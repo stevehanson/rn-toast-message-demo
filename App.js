@@ -9,6 +9,7 @@
 import React from 'react';
 import type {Node} from 'react';
 import {
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -25,6 +26,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Toast from 'react-native-toast-message';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -66,6 +68,10 @@ const App: () => Node = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
+        <Pressable
+          onPress={() => Toast.show({type: 'success', text1: 'Does it work?'})}>
+          <Text>Launch toast</Text>
+        </Pressable>
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -86,6 +92,7 @@ const App: () => Node = () => {
           <LearnMoreLinks />
         </View>
       </ScrollView>
+      <Toast />
     </SafeAreaView>
   );
 };
